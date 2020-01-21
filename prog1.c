@@ -1,13 +1,13 @@
-//discrete frequency distribution methods
+//1. generate frequency distribution table for the given raw data.
 #include<stdio.h>
 int main()
 {
 	int a;
-	int counter;
-	int total=0;
-	printf("enter howmany data ?\n");
+	int class;
+	int counter=0;
+	printf("enter the data\n");
 	scanf("%d",&a);
-	int rec[a],rec2[a];
+	int rec[a];
 	for(int i=0;i<a;i++)
 	{
 		scanf("%d",&rec[i]);
@@ -26,45 +26,52 @@ int main()
 	}
 	for(int i=0;i<a;i++)
 	{
-		printf("\n%d",rec[i]);
+		printf("\n%d\n",rec[i]);
 	}
-	int lowest=rec[0];
-	int higest=rec[a-1];
-	int low=lowest;
-	int high=higest;
-	printf("\nlowest : %d\n",lowest);
-	printf("higest : %d\n",higest);
-	int count=0; 
-	for(int i=lowest;i<=higest;i++)
-		count++;
-	printf("\n\n%d\n\n",count);
-	int n2[count],n[count];
-	for(int i=0;i<count;i++)
+	int lower=rec[0];
+	int upper=rec[a-1];
+	printf("lower = %d\n",lower);
+	printf("upper = %d\n",upper);
+	printf("select no of classes\n");
+	scanf("%d",&class);
+	float r=(float)(upper-lower)/class;
+	int r1=r;
+	int n1[class],n2[class],n3[class];
+	if(r1<r)
 	{
-		n2[i]=lowest;
-		lowest++;
+		r1=r1+1;
+		printf("range is %d\n",r1);
+		//int n1[class],n2[class],n3[class];
 	}
-	for(int j=0;j<count;j++)
+	for(int i=0;i<class;i++)
 	{
-		counter=0;
-		for(int i=0;i<a;i++)
+		n1[i]=lower;
+		n2[i]=lower+r1;
+		lower=lower+r1;
+	}
+	for(int j=0;j<class;j++){
+	for(int i=0;i<a;i++)
+	{
+		if(rec[i]>=n1[j] && rec[i]<n2[j])
 		{
-			if(n2[j]==rec[i])
-				counter++;
-			
+			counter++;
 		}
-		n[j]=counter;
 	}
-	printf("class");printf("  frequency");
-	for(int i=0;i<count;i++)
+	n3[j]=counter;
+	counter=0;
+	}
+	printf("class           ");printf("frequency \n");
+	for(int i=0;i<class;i++)
 	{
-		printf("\n%d",n2[i]);	
-		printf("        %d\n",n[i]);
+		printf("%d",n1[i]);
+		printf("-");
+		printf("%d            ",n2[i]);
+		printf("%d\n",n3[i]);
 	}
-	printf("total :");
-	for(int i=0;i<count;i++)
+	int total=0;
+	for(int i=0;i<class;i++)
 	{
-		total=total+n[i];
+		total=total+n3[i];
 	}
-	printf("     %d\n",total);
+	printf(" total    :  %d",total);
 }
