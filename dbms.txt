@@ -1,0 +1,69 @@
+
+mysql> create table client_master2(
+    -> clientno varchar(6) not null primary key,
+    -> name varchar(20) not null,
+    -> address1 varchar(30),
+    -> address2 varchar(30),
+    -> city varchar(15),
+    -> pincode int(8),
+    -> state varchar(15),
+    -> baldue decimal(10,2));
+Query OK, 0 rows affected (0.60 sec)
+
+mysql> create table product_master2(
+    -> productno varchar(6) not null primary key,
+    -> description varchar(15) not null,
+    -> profitpercent decimal(4,2) not null,
+    -> unitmeasure varchar(10) not null,
+    -> qtyonhand int(8) not null,
+    -> reorderlvli int(8) not null,
+    -> sellprice decimal(8,2) not null,
+    -> costprice decimal(8,2) not null);
+Query OK, 0 rows affected (0.56 sec)
+
+mysql> create table salesman_master2(
+    -> salesmanno varchar(6) primary key check(salesmanno like 'S.......'),
+    -> salesmanname varchar(20) not null,
+    -> address1 varchar(30) not null,
+    -> address2 varchar(30) not null,
+    -> city varchar(30),
+    -> pincode int(8),
+    -> state varchar(20),
+    -> salamt decimal(8,2) not null check(salamt>0),
+    -> tgttoget decimal(6,2) not null check(tgttoget>0),
+    -> ytdsales decimal(6,2) not null,
+    -> remarks varchar(60));
+Query OK, 0 rows affected (0.38 sec)
+
+create table sales_order(
+    -> orderno varchar(6) primary key,
+    -> clientno varchar(6),
+    -> orderdate date,
+    -> delyddr varchar(25),
+    -> salesmanno varchar(6),
+    -> delytype char(1),
+    -> billyn char(1),
+    -> delydate date,
+    -> orderstatus varchar(10),
+    -> index(clientno),
+    -> foreign key(clientno) references client_master2(clientno),
+    -> index(salesmanno),
+    -> foreign key(salesmanno) references salesman_master2(salesmanno));
+
+
+ create table sales_orderdetails(
+    -> orderno varchar(6),
+    -> productno varchar(6),
+    -> qtyordered int(8),
+    -> qtydisp int(8),
+    -> productrate decimal(10,2),
+    -> index(orderno),
+    -> foreign key(orderno) references sales_order(orderno),
+    -> index(productno),
+    -> foreign key(productno) references product_master2(productno));
+Query OK, 0 rows affected (0.56 sec)
+
+
+insert:
+
+
