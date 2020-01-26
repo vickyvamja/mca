@@ -1,0 +1,44 @@
+insert into product_master2(productno,description,profitpercent,unitmeasure,qtyonhand,reorderlvl,sellprice,costprice) values
+('P00001','t-shirts',5,'piece',200,50,350,250),
+('P0345','shirts',6,'piece',150,50,500,350),
+('P06734','cotton jeans',5,'piece',100,20,600,450),
+('P07865','jeans',5,'piece',100,20,750,500),
+('P07868','trousers',2,'piece',150,50,850,550),
+('P07885','pull overs',2.5,'piece',80,30,700,450),
+('P07965','denim shirts',4,'piece',100,4,350,250),
+('P07975','lycra tops',5,'piece',70,30,300,175),
+('P08865','skirts',5,'piece',75,30,450,300);
+
+
+insert into salesman_master2(salesmanno,name,address1,address2,city,pincode,state,salamt,tgttoget,ytdsales,remarks) values
+('S00001','aman','A/14','worli','mumbai',400002,'maharastra',3000,100,50,good),
+('S00002','omkar','65','nariman','mumbai',400001,'maharastra',3000,200,100,good),
+('S00003','ray','p-7','bandra','mumbai',400032,'maharastra',3000,200,100,good),
+('S00004','ashish','A/5','juhu','mumbai',400044,'maharastra',3500,200,150,good);
+
+
+insert into sales_order(orderno,clientno,orderdate,salesmanno,deltype,billyn,delydate,orderstatus) values
+('O19001',C00001','2004-06-12','S00001','f','N','2002-07-20','in process'),
+('O19002',C00002','2004-06-25','S00002','p','N','2002-06-27','cancelled'),
+('O46865',C00003','2004-02-18','S00003','f','Y','2002-02-20','fulfilled'),
+('O19003',C00001','2004-04-03','S00001','f','Y','2002-04-07','fulfilled'),
+('O46866',C00004','2004-05-20','S00002','p','N','2002-05-22','cancelled'),
+('O19008',C00005','2004-05-24','S00004','f','N','2002-07-26','in process');
+
+
+insert into sales_order_details(orderno,productno,qtyordered,qtydisp,productrate) values
+('O19001','P00001',4,4,525),
+('O19001','P07965',2,1,8400),
+('O19001','P07885',2,1,5250),
+('O19002','P00001',10,0,525),
+('O46865','P07868',3,3,3150),
+('O46865','P07885',3,1,5250),
+('O46865','P00001',10,10,525),
+('O46865','P0345',4,4,1050),
+('O19003','P03453',2,2,1050),
+('O19003','P06734',1,1,12000),
+('O46866','P07965',1,0,8400),
+('O46866','P07975',1,0,1050),
+('O19008','P00001',10,5,525),
+('O19008','P07975',5,3,1050);
+
